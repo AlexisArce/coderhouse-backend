@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Coca cola",
+    "price": 180,
+    "thumbnail": null,
+    "id": 1
+  },
+  {
+    "title": "Pepsi",
+    "price": 150,
+    "thumbnail": null,
+    "id": 2
+  },
+  {
+    "title": "Coca cola",
+    "price": 180,
+    "thumbnail": null,
+    "id": 3
+  },
+  {
+    "title": "Pepsi",
+    "price": 150,
+    "thumbnail": null,
+    "id": 4
+  },
+  {
+    "title": "Coca cola",
+    "price": 180,
+    "thumbnail": null,
+    "id": 5
+  },
+  {
+    "title": "Pepsi",
+    "price": 150,
+    "thumbnail": null,
+    "id": 6
+  },
+  {
+    "title": "Coca cola",
+    "price": 180,
+    "thumbnail": null,
+    "id": 7
+  },
+  {
+    "title": "Pepsi",
+    "price": 150,
+    "thumbnail": null,
+    "id": 8
+  }
+]
