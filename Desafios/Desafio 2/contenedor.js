@@ -4,7 +4,7 @@ import _ from "lodash";
 class Contenedor {
   save = async (object) => {
     try {
-      let all = JSON.parse((await this.getAll()) || "[]");
+      const all = JSON.parse((await this.getAll()) || "[]");
       const lastObjectAdded = _.maxBy(all, "id");
 
       let newId = 1;
@@ -36,8 +36,27 @@ class Contenedor {
     }
   };
 
-  deleteById(id) {}
-  deleteAll() {}
+  deleteById = async (id) => {
+    try {
+      const all = JSON.parse((await this.getAll()) || "[]"); 
+      const filteredProducts = all.filter(p => p.id != id);
+      const info = JSON.stringify(filteredProducts, null, 2);
+
+      await fs.promises.writeFile("./productos.txt", info, "utf-8");
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  deleteAll = async () => {
+    try {
+      const info = JSON.stringify([]);
+      await fs.promises.writeFile("./productos.txt", info, "utf-8");
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 
 export default Contenedor;
