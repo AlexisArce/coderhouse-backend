@@ -1,0 +1,8 @@
+[
+  {
+    "title": "Pepsi",
+    "price": 150,
+    "thumbnail": null,
+    "id": 2
+  }
+]
