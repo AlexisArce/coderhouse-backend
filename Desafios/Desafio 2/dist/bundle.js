@@ -10,6 +10,36 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/contenedor.js":
+/*!***************************!*\
+  !*** ./src/contenedor.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ \"lodash\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\n\n\nclass Contenedor {\n  constructor() {\n    _defineProperty(this, \"save\", async object => {\n      try {\n        const all = JSON.parse((await this.getAll()) || \"[]\");\n\n        const lastObjectAdded = lodash__WEBPACK_IMPORTED_MODULE_1___default().maxBy(all, \"id\");\n\n        let newId = 1;\n        if (lastObjectAdded) newId = (lastObjectAdded.id || 0) + 1;\n        object.id = newId;\n        all.push(object);\n        const info = JSON.stringify(all, null, 2);\n        await fs__WEBPACK_IMPORTED_MODULE_0___default().promises.writeFile(\"./productos.txt\", info, \"utf-8\");\n        return newId;\n      } catch (error) {\n        console.error(error);\n      }\n    });\n\n    _defineProperty(this, \"getById\", async id => {\n      const all = JSON.parse(await this.getAll());\n      return all.find(o => o.id == id);\n    });\n\n    _defineProperty(this, \"getAll\", async () => {\n      try {\n        return await fs__WEBPACK_IMPORTED_MODULE_0___default().promises.readFile(\"./productos.txt\", \"utf-8\");\n      } catch (error) {\n        console.error(error);\n      }\n    });\n\n    _defineProperty(this, \"deleteById\", async id => {\n      try {\n        const all = JSON.parse((await this.getAll()) || \"[]\");\n        const filteredProducts = all.filter(p => p.id != id);\n        const info = JSON.stringify(filteredProducts, null, 2);\n        await fs__WEBPACK_IMPORTED_MODULE_0___default().promises.writeFile(\"./productos.txt\", info, \"utf-8\");\n      } catch (error) {\n        console.error(error);\n      }\n    });\n\n    _defineProperty(this, \"deleteAll\", async () => {\n      try {\n        const info = JSON.stringify([]);\n        await fs__WEBPACK_IMPORTED_MODULE_0___default().promises.writeFile(\"./productos.txt\", info, \"utf-8\");\n      } catch (error) {\n        console.error(error);\n      }\n    });\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Contenedor);\n\n//# sourceURL=webpack://desafio-2/./src/contenedor.js?");
+
+/***/ }),
+
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__) => {\n__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _contenedor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contenedor.js */ \"./src/contenedor.js\");\n/* harmony import */ var _producto_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./producto.js */ \"./src/producto.js\");\n\n\nconst contenedor = new _contenedor_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nconsole.log(\"Datos iniciales: \");\nconsole.log(await contenedor.getAll());\nawait contenedor.deleteAll();\nconsole.log(\"Datos luego de invocar a deleteAll()\");\nconsole.log(await contenedor.getAll());\nlet product1 = new _producto_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](\"Coca cola\", 180, null);\nlet product2 = new _producto_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](\"Pepsi\", 150, null);\nawait contenedor.save(product1);\nawait contenedor.save(product2);\nconsole.log(\"Datos luego de crear dos productos con save\");\nconsole.log(await contenedor.getAll());\nconsole.log(\"Get by Id == 2\");\nconsole.log(await contenedor.getById(2));\nawait contenedor.deleteById(1);\nconsole.log(\"Datos luego de eliminar el producto con id == 1\");\nconsole.log(await contenedor.getAll());\n__webpack_handle_async_dependencies__();\n}, 1);\n\n//# sourceURL=webpack://desafio-2/./src/main.js?");
+
+/***/ }),
+
+/***/ "./src/producto.js":
+/*!*************************!*\
+  !*** ./src/producto.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass Producto {\n  constructor(title, price, thumbnail) {\n    this.title = title;\n    this.price = price;\n    this.thumbnail = thumbnail;\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Producto);\n\n//# sourceURL=webpack://desafio-2/./src/producto.js?");
+
+/***/ }),
+
 /***/ "lodash":
 /*!*************************!*\
   !*** external "lodash" ***!
@@ -27,36 +57,6 @@ module.exports = require("lodash");
 /***/ ((module) => {
 
 module.exports = require("fs");
-
-/***/ }),
-
-/***/ "./src/contenedor.js":
-/*!***************************!*\
-  !*** ./src/contenedor.js ***!
-  \***************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ \"lodash\");\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\n\n\nclass Contenedor {\n  constructor() {\n    _defineProperty(this, \"save\", async object => {\n      try {\n        const all = JSON.parse((await this.getAll()) || \"[]\");\n\n        const lastObjectAdded = lodash__WEBPACK_IMPORTED_MODULE_1__.maxBy(all, \"id\");\n\n        let newId = 1;\n        if (lastObjectAdded) newId = (lastObjectAdded.id || 0) + 1;\n        object.id = newId;\n        all.push(object);\n        const info = JSON.stringify(all, null, 2);\n        await fs__WEBPACK_IMPORTED_MODULE_0__.promises.writeFile(\"./productos.txt\", info, \"utf-8\");\n        return newId;\n      } catch (error) {\n        console.error(error);\n      }\n    });\n\n    _defineProperty(this, \"getById\", async id => {\n      const all = JSON.parse(await this.getAll());\n      return all.find(o => o.id == id);\n    });\n\n    _defineProperty(this, \"getAll\", async () => {\n      try {\n        return await fs__WEBPACK_IMPORTED_MODULE_0__.promises.readFile(\"./productos.txt\", \"utf-8\");\n      } catch (error) {\n        console.error(error);\n      }\n    });\n\n    _defineProperty(this, \"deleteById\", async id => {\n      try {\n        const all = JSON.parse((await this.getAll()) || \"[]\");\n        const filteredProducts = all.filter(p => p.id != id);\n        const info = JSON.stringify(filteredProducts, null, 2);\n        await fs__WEBPACK_IMPORTED_MODULE_0__.promises.writeFile(\"./productos.txt\", info, \"utf-8\");\n      } catch (error) {\n        console.error(error);\n      }\n    });\n\n    _defineProperty(this, \"deleteAll\", async () => {\n      try {\n        const info = JSON.stringify([]);\n        await fs__WEBPACK_IMPORTED_MODULE_0__.promises.writeFile(\"./productos.txt\", info, \"utf-8\");\n      } catch (error) {\n        console.error(error);\n      }\n    });\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Contenedor);\n\n//# sourceURL=webpack://desafio-2/./src/contenedor.js?");
-
-/***/ }),
-
-/***/ "./src/main.js":
-/*!*********************!*\
-  !*** ./src/main.js ***!
-  \*********************/
-/***/ ((__webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__) => {\n__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _contenedor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contenedor.js */ \"./src/contenedor.js\");\n/* harmony import */ var _producto_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./producto.js */ \"./src/producto.js\");\n\n\nconst contenedor = new _contenedor_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nconsole.log(\"Datos iniciales\");\nconsole.log(await contenedor.getAll());\nawait contenedor.deleteAll();\nconsole.log(\"Datos luego de invocar a deleteAll()\");\nconsole.log(await contenedor.getAll());\nlet product1 = new _producto_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](\"Coca cola\", 180, null);\nlet product2 = new _producto_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](\"Pepsi\", 150, null);\nawait contenedor.save(product1);\nawait contenedor.save(product2);\nconsole.log(\"Datos luego de crear dos productos con save\");\nconsole.log(await contenedor.getAll());\nconsole.log(\"Get by Id == 2\");\nconsole.log(await contenedor.getById(2));\nawait contenedor.deleteById(1);\nconsole.log(\"Datos luego de eliminar el producto con id == 1\");\nconsole.log(await contenedor.getAll());\n__webpack_handle_async_dependencies__();\n}, 1);\n\n//# sourceURL=webpack://desafio-2/./src/main.js?");
-
-/***/ }),
-
-/***/ "./src/producto.js":
-/*!*************************!*\
-  !*** ./src/producto.js ***!
-  \*************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass Producto {\n  constructor(title, price, thumbnail) {\n    this.title = title;\n    this.price = price;\n    this.thumbnail = thumbnail;\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Producto);\n\n//# sourceURL=webpack://desafio-2/./src/producto.js?");
 
 /***/ })
 
@@ -158,6 +158,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 				return fn.r ? promise : result;
 /******/ 			}).then(outerResolve, reject);
 /******/ 			isEvaluating = false;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

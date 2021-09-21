@@ -3,7 +3,7 @@ import Producto from "./producto.js";
 
 const contenedor = new Contenedor();
 
-console.log("Datos iniciales");
+console.log("Datos iniciales: ");
 console.log(await contenedor.getAll());
 
 await contenedor.deleteAll();
