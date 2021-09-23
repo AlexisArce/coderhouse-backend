@@ -1,8 +1,27 @@
-const express = require("express");
-const app = express();
+import fs from "fs";
+import _ from "lodash";
+import express from "express";
+import Contenedor from "./contenedor";
 
-app.get("/", (req, res) => {
-  res.status(200).json({ name: "El pity", surname: "Martinez" });
+const app = express();
+const contenedor = new Contenedor();
+
+app.get("/productos", async (req, res) => {
+  const all = JSON.parse(await contenedor.getAll());
+
+  res.status(200).json(all);
+});
+
+app.get("/productoRandom", async (req, res) => {
+  const all = JSON.parse(await contenedor.getAll());
+  let product;
+
+  if (all) {
+    const idRandom = _.random(1, all.length);
+    product = all.filter((p) => p.id === idRandom);
+  }
+
+  res.status(200).json(product);
 });
 
 app.listen(8080, () => {
