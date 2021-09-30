@@ -1,29 +1,58 @@
-const express = require("express");
-const { Router } = express;
+import express from "express";
+import _ from "lodash";
+import Contenedor from "./contenedor";
 
 const app = express();
-const router = Router();
 
-router.get("/productos", (req, res) => {
-  res.send("get ok");
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+const router = express.Router();
+const container = new Contenedor();
+
+router.get("/", async (req, res) => {
+  const products = await container.getAll();
+  res.json(products);
 });
 
-router.get("/productos/:id", (req, res) => {
-  res.send("get by id ok");
+router.get("/:id", async (req, res) => {
+  const product = await container.getById(req.params.id);
+  if (product) res.send(product);
+  else res.status(404).json({ error: "producto no encontrado" });
 });
 
-router.post("/productos", (req, res) => {
-  res.send("post ok");
+router.post("/", async (req, res) => {
+  if (req.body.title) {
+    const createdProduct = await container.save(req.body);
+
+    res.status(201).send(createdProduct);
+  } else res.status(400).send({ error: "debe indicar el nombre del producto" });
 });
 
-router.put("/productos/:id", (req, res) => {
-  res.send("put ok");
+router.put("/:id", async (req, res) => {
+  const product = await container.getById(req.params.id);
+
+  if (!product) res.status(404).json({ error: "producto no encontrado" });
+
+  product.title = req.body.title;
+  product.price = req.body.price;
+
+  await container.update(product);
+
+  res.send("producto actualizado");
 });
 
-router.delete("/productos/:id", (req, res) => {
-  res.send("delete ok");
+router.delete("/:id", async (req, res) => {
+  const product = await container.getById(req.params.id);
+
+  if (!product) res.status(404).json({ error: "producto no encontrado" });
+
+  container.deleteById(product.id);
+
+  res.send("producto eliminado");
 });
 
-app.use("/api", router);
+app.use("/api/productos", router);
 
 app.listen(8080);
