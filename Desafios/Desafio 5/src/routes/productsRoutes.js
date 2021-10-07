@@ -5,9 +5,13 @@ const { Router } = express;
 const productsRoutes = new Router();
 
 productsRoutes.get("/", async (req, res) => {
-  const response = await productsApi.get("/");
-
-  res.render("index", { products: response.data });
+  try {
+    const response = await productsApi.get("/");
+    res.render("index", { products: response.data });
+  } catch (error) {
+    console.log(error);
+    res.render("index", { products: [] });
+  }
 });
 
 export default productsRoutes;
