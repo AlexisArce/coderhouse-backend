@@ -18,9 +18,9 @@
         <h1>Desafío 5</h1>
       </header>
       <div class="row">
-        <% products.forEach(function(product) { %>
-        <div class="col"><%- include('templates/card', {item: product}) %></div>
-        <% }); %>
+        <div class="col">
+          <%- include('templates/productsTable', {products}) %>
+        </div>
       </div>
     </div>
     <script
