@@ -10,23 +10,43 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/apis/products.js":
+/*!******************************!*\
+  !*** ./src/apis/products.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"axios\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios__WEBPACK_IMPORTED_MODULE_0___default().create({\n  baseURL: \"http://localhost:8080/api/productos\"\n}));\n\n//# sourceURL=webpack://desafio-5/./src/apis/products.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _routes_userRoutes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes/userRoutes */ \"./src/routes/userRoutes.js\");\n\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()();\napp.set(\"views\", __dirname + \"/views\");\napp.set(\"view engine\", \"ejs\");\napp.use(\"/api\", _routes_userRoutes__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\napp.listen(3004, () => {\n  console.log(\"server is running on port 3004\");\n});\n\n//# sourceURL=webpack://desafio-5/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _routes_productsRoutes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes/productsRoutes */ \"./src/routes/productsRoutes.js\");\n\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()();\napp.set(\"views\", __dirname + \"/views\");\napp.set(\"view engine\", \"ejs\");\napp.use(\"/productos\", _routes_productsRoutes__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\napp.listen(3004, () => {\n  console.log(\"server is running on port 3004\");\n});\n\n//# sourceURL=webpack://desafio-5/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/routes/userRoutes.js":
-/*!**********************************!*\
-  !*** ./src/routes/userRoutes.js ***!
-  \**********************************/
+/***/ "./src/routes/productsRoutes.js":
+/*!**************************************!*\
+  !*** ./src/routes/productsRoutes.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nconst {\n  Router\n} = (express__WEBPACK_IMPORTED_MODULE_0___default());\nconst userRoutes = new Router();\nuserRoutes.get(\"/\", (req, res) => {\n  res.render(\"index\", {});\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (userRoutes);\n\n//# sourceURL=webpack://desafio-5/./src/routes/userRoutes.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _apis_products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../apis/products */ \"./src/apis/products.js\");\n\n\nconst {\n  Router\n} = (express__WEBPACK_IMPORTED_MODULE_0___default());\nconst productsRoutes = new Router();\nproductsRoutes.get(\"/\", async (req, res) => {\n  const response = await _apis_products__WEBPACK_IMPORTED_MODULE_1__[\"default\"].get(\"/\");\n  res.render(\"index\", {\n    products: response.data\n  });\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (productsRoutes);\n\n//# sourceURL=webpack://desafio-5/./src/routes/productsRoutes.js?");
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = require("axios");
 
 /***/ }),
 
