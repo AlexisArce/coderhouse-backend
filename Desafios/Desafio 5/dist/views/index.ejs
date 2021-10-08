@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('templates/head', { title: "Desafío 5"}) %>
+  <%- include('templates/head', { title: "Productos"}) %>
   <body>
     <div class="container">
+      <%- include('templates/navbar', { urlIndex:'./', urlProducts:
+      './products', urlRegister: './products/register'}) %>
       <header>
         <h1>Desafío 5</h1>
       </header>
-      <div class="row">
-        <div class="col">
-          <%- include('templates/productsTable', {products}) %>
-        </div>
-      </div>
     </div>
     <%- include('templates/footer', {}) %>
   </body>

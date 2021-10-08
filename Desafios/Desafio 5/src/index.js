@@ -1,5 +1,6 @@
 import express from "express";
-import productsRoutes from "./routes/productsRoutes";
+import indexRoutes from "./routes/indexRoutes";
+import productRoutes from "./routes/productRoutes";
 
 const app = express();
 
@@ -10,7 +11,8 @@ app.use(express.static("public"));
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
-app.use("/products", productsRoutes);
+app.use("/", indexRoutes);
+app.use("/products", productRoutes);
 
 app.listen(3004, () => {
   console.log("server is running on port 3004");

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('templates/head', { title: "Desafío 5"}) %>
+  <%- include('templates/head', { title: "Nuevo producto"}) %>
   <body>
     <div class="container">
+      <%- include('templates/navbar', { urlIndex:'../..', urlProducts: './',
+      urlRegister: './register'}) %>
       <header><h2>Nuevo producto</h2></header>
       <div class="form">
         <form action="/products/register" method="post">

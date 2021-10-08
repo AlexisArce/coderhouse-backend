@@ -2,23 +2,23 @@ import express from "express";
 import productsApi from "../apis/products";
 
 const { Router } = express;
-const productsRoutes = new Router();
+const productRoutes = new Router();
 
-productsRoutes.get("/", async (req, res) => {
+productRoutes.get("/", async (req, res) => {
   try {
     const response = await productsApi.get("/productos");
-    res.render("index", { products: response.data });
+    res.render("products", { products: response.data });
   } catch (error) {
     console.log(error);
-    res.render("index", { products: [] });
+    res.render("products", { products: [] });
   }
 });
 
-productsRoutes.get("/register", async (req, res) => {
+productRoutes.get("/register", async (req, res) => {
   res.render("register", {});
 });
 
-productsRoutes.post("/register", async (req, res) => {
+productRoutes.post("/register", async (req, res) => {
   if (req.body.title) {
     const data = { ...req.body };
     await productsApi.post("/productos", data);
@@ -27,4 +27,4 @@ productsRoutes.post("/register", async (req, res) => {
   } else res.status(400).send({ error: "debe indicar el nombre del producto" });
 });
 
-export default productsRoutes;
+export default productRoutes;
