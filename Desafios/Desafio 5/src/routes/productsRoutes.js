@@ -21,9 +21,9 @@ productsRoutes.get("/register", async (req, res) => {
 productsRoutes.post("/register", async (req, res) => {
   if (req.body.title) {
     const data = { ...req.body };
-    const createdProduct = await productsApi.post("/productos", data);
+    await productsApi.post("/productos", data);
 
-    res.redirect("/");
+    res.redirect("/products");
   } else res.status(400).send({ error: "debe indicar el nombre del producto" });
 });
 
