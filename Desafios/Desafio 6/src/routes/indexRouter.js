@@ -4,7 +4,7 @@ const { Router } = express;
 const indexRouter = new Router();
 
 indexRouter.get("/", async (req, res) => {
-  res.render("main", {});
+  res.render("index", {});
 });
 
 export default indexRouter;
