@@ -6,6 +6,7 @@ import indexRouter from "./routes/indexRouter";
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +26,6 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(3000, () => {
-  console.log("server is running on port 3000");
+httpServer.listen(port, () => {
+  console.log(`server is running on port ${port}`);
 });
