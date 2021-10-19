@@ -9,6 +9,14 @@ npm start
 
 -------------------------------------------------------------------
 
+ "scripts": {
+    "build": "webpack --config=webpack.config.js --mode=production",
+    "dev": "webpack --watch --config=webpack.config.js --mode=development",
+    "start": "nodemon dist/bundle.js"
+  },
+
+-------------------------------------------------------------------
+
 npm i -D webpack webpack-cli webpack-node-externals
 npm i -D @babel/core  @babel/preset-env babel-loader
 npm i -D nodemon nodemon-webpack-plugin
