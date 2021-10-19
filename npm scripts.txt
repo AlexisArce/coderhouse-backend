@@ -1,0 +1,17 @@
+npm run dev
+    Starts the development server.
+
+npm run build
+    Builds the app for production.
+
+npm start
+    Runs the built app in production mode.
+
+-------------------------------------------------------------------
+
+npm i -D webpack webpack-cli webpack-node-externals
+npm i -D @babel/core  @babel/preset-env babel-loader
+npm i -D nodemon nodemon-webpack-plugin
+npm i -D copy-webpack-plugin
+
+npm i express
