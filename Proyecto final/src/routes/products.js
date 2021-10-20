@@ -1,6 +1,7 @@
 import express from "express";
 import Container from "../dataAccess/container";
 import * as path from "path";
+import isAdmin from "../constants";
 
 const { Router } = express;
 const router = new Router();
@@ -20,6 +21,10 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  if (!isAdmin) {
+    return res.status(403).send({ error: "No autorizado" });
+  }
+
   if (req.body.title) {
     const createdProduct = await container.save(req.body);
 
@@ -28,6 +33,10 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+  if (!isAdmin) {
+    return res.status(403).send({ error: "No autorizado" });
+  }
+
   const product = await container.getById(req.params.id);
 
   if (!product) res.status(404).json({ error: "producto no encontrado" });
@@ -41,6 +50,10 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
+  if (!isAdmin) {
+    return res.status(403).send({ error: "No autorizado" });
+  }
+
   const product = await container.getById(req.params.id);
 
   if (!product) res.status(404).json({ error: "producto no encontrado" });
