@@ -9,12 +9,12 @@ class Container {
   save = async (object) => {
     try {
       const all = await this.getAll();
-      const lastObjectAdded = _.maxBy(all, "id");
 
-      let newId = 1;
-      if (lastObjectAdded) newId = (lastObjectAdded.id || 0) + 1;
+      if (!object.id) {
+        const lastObjectAdded = _.maxBy(all, "id");
+        if (lastObjectAdded) object.id = (lastObjectAdded.id || 0) + 1;
+      }
 
-      object.id = newId;
       all.push(object);
       const info = JSON.stringify(all, null, 2);
 
@@ -33,6 +33,23 @@ class Container {
 
       all[index].title = object.title;
       all[index].price = object.price;
+
+      const info = JSON.stringify(all, null, 2);
+
+      await fs.promises.writeFile(this.filePath, info, "utf-8");
+
+      return object;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  updateCart = async (object) => {
+    try {
+      const all = await this.getAll();
+      const index = _.findIndex(all, (p) => p.id == object.id);
+
+      all[index].products = object.products;
 
       const info = JSON.stringify(all, null, 2);
 

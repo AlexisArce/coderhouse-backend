@@ -1,7 +1,7 @@
 import express from "express";
 import Container from "../dataAccess/container";
 import * as path from "path";
-import isAdmin from "../constants";
+import isAdmin from "../config/constants";
 
 const { Router } = express;
 const router = new Router();
@@ -26,7 +26,8 @@ router.post("/", async (req, res) => {
   }
 
   if (req.body.title) {
-    const createdProduct = await container.save(req.body);
+    const data = { ...req.body };
+    const createdProduct = await container.save(data);
 
     res.status(201).send(createdProduct);
   } else res.status(400).send({ error: "debe indicar el nombre del producto" });
@@ -38,7 +39,6 @@ router.put("/:id", async (req, res) => {
   }
 
   const product = await container.getById(req.params.id);
-
   if (!product) res.status(404).json({ error: "producto no encontrado" });
 
   product.title = req.body.title;
