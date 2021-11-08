@@ -1,13 +1,11 @@
 import express from "express";
-import Container from "../dataAccess/container";
-import * as path from "path";
+import Container from "../containers/FileContainer";
 import isAdmin from "../config/constants";
+import persistence from "../config/db";
 
 const { Router } = express;
 const router = new Router();
-const container = new Container(
-  path.resolve(__dirname, "../data", "products.json")
-);
+const container = new Container(persistence.fileSystem.path);
 
 router.get("/", async (req, res) => {
   const products = await container.getAll();

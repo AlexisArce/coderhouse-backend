@@ -1,3 +1,4 @@
 const isAdmin = true;
+const persistenceMethod = "mongodb";
 
-export default isAdmin;
+export default { isAdmin, persistenceMethod };
