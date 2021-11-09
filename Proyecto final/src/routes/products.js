@@ -1,6 +1,6 @@
 import express from "express";
 import Container from "../containers/FileContainer";
-import isAdmin from "../config/constants";
+import constants from "../config/constants";
 import persistence from "../config/db";
 
 const { Router } = express;
@@ -19,7 +19,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  if (!isAdmin) {
+  if (!constants.isAdmin) {
     return res.status(403).send({ error: "No autorizado" });
   }
 
@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  if (!isAdmin) {
+  if (!constants.isAdmin) {
     return res.status(403).send({ error: "No autorizado" });
   }
 
@@ -48,7 +48,7 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  if (!isAdmin) {
+  if (!constants.isAdmin) {
     return res.status(403).send({ error: "No autorizado" });
   }
 
