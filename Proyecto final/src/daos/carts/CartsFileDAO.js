@@ -1,11 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
-import * as path from "path";
 import FileContainer from "../../containers/FileContainer";
+import persistence from "../../config/db";
 
 class CartsFileDAO {
-  container = new FileContainer(
-    path.resolve(__dirname, "../data", "carts.json")
-  );
+  container = new FileContainer(persistence.fileSystem.cartsPath);
 
   async getAll() {
     return await this.container.getAll();
@@ -17,15 +15,15 @@ class CartsFileDAO {
 
   async save(cart) {
     cart.id = cart.id || uuidv4();
-    await container.save(cart);
+    await this.container.save(cart);
   }
 
   async deleteById(id) {
-    await container.deleteById(id);
+    await this.container.deleteById(id);
   }
 
   async updateCart(cart) {
-    await container.updateCart(cart);
+    await this.container.updateCart(cart);
   }
 }
 

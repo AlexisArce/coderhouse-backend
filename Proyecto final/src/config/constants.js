@@ -1,4 +1,4 @@
 export default {
-  isAdmin: false,
+  isAdmin: true,
   persistenceMethod: "json",
 };

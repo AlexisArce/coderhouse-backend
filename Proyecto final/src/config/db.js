@@ -2,7 +2,8 @@ import * as path from "path";
 
 export default {
   fileSystem: {
-    path: path.resolve(__dirname, "../data", "products.json"),
+    productsPath: path.resolve(__dirname, "../data", "products.json"),
+    cartsPath: path.resolve(__dirname, "../data", "carts.json"),
   },
   mongodb: {
     cnxStr:
