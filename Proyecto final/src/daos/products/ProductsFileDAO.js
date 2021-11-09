@@ -2,7 +2,10 @@ import persistence from "../../config/db";
 import FileContainer from "../../containers/FileContainer";
 
 class ProductsFileDAO {
-  container = new FileContainer(persistence.fileSystem.productsPath);
+  constructor() {
+    //Todo: dependency injection
+    this.container = new FileContainer(persistence.fileSystem.productsPath);
+  }
 
   async getAll() {
     return await this.container.getAll();

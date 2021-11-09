@@ -3,7 +3,10 @@ import FileContainer from "../../containers/FileContainer";
 import persistence from "../../config/db";
 
 class CartsFileDAO {
-  container = new FileContainer(persistence.fileSystem.cartsPath);
+  constructor() {
+    //Todo: dependency injection
+    this.container = new FileContainer(persistence.fileSystem.cartsPath);
+  }
 
   async getAll() {
     return await this.container.getAll();
