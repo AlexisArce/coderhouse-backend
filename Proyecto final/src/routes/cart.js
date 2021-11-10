@@ -24,9 +24,9 @@ router.get("/:id/productos", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const cart = { products: [] };
-  await cartsDAO.save(cart);
+  const createdCart = await cartsDAO.save(cart);
 
-  res.status(201).json({ id: cart.id });
+  res.status(201).json({ id: createdCart.id });
 });
 
 router.delete("/:id", async (req, res) => {

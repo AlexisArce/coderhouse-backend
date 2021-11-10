@@ -44,13 +44,14 @@ class MongoDbContainer {
     try {
       const docs = await this.collection.find({ _id: id }, { __v: 0 });
       if (docs.length == 0) {
-        throw new Error("Error al listar por id: no encontrado");
+        return null;
       } else {
         const result = renameField(asPOJO(docs[0]), "_id", "id");
         return result;
       }
     } catch (error) {
-      throw new Error(`Error al listar por id: ${error}`);
+      console.error(`Error al listar por id: ${error}`);
+      return null;
     }
   }
 

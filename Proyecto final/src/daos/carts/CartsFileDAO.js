@@ -4,7 +4,6 @@ import persistence from "../../config/db";
 
 class CartsFileDAO {
   constructor() {
-    //Todo: dependency injection
     this.container = new FileContainer(persistence.fileSystem.cartsPath);
   }
 
@@ -18,7 +17,7 @@ class CartsFileDAO {
 
   async save(cart) {
     cart.id = cart.id || uuidv4();
-    await this.container.save(cart);
+    return await this.container.save(cart);
   }
 
   async deleteById(id) {

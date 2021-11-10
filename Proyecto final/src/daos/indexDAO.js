@@ -15,7 +15,7 @@ switch (constants.persistenceMethod) {
 
   case "mongodb":
     cartsDAO = new CartsMongoDbDAO();
-    productsDAO = ProductsMongoDbDAO();
+    productsDAO = new ProductsMongoDbDAO();
     break;
 
   case "firebase":

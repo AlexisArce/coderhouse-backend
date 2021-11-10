@@ -15,7 +15,7 @@ class CartsMongoDbDAO {
   }
 
   async save(cart) {
-    await this.container.save(cart);
+    return await this.container.save(cart);
   }
 
   async deleteById(id) {

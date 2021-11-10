@@ -21,12 +21,13 @@ router.post("/", async (req, res) => {
     return res.status(403).send({ error: "No autorizado" });
   }
 
-  if (req.body.title) {
+  const { title, price, thumbnail } = req.body;
+  if (title && price && thumbnail) {
     const data = { ...req.body };
     const createdProduct = await productsDAO.save(data);
 
     res.status(201).send(createdProduct);
-  } else res.status(400).send({ error: "debe indicar el nombre del producto" });
+  } else res.status(400).send({ error: "Faltan datos obligatorios" });
 });
 
 router.put("/:id", async (req, res) => {
@@ -37,8 +38,10 @@ router.put("/:id", async (req, res) => {
   const product = await productsDAO.getById(req.params.id);
   if (!product) res.status(404).json({ error: "producto no encontrado" });
 
-  product.title = req.body.title;
-  product.price = req.body.price;
+  const { title, price, thumbnail } = req.body;
+  product.title = title || product.title;
+  product.price = price || product.price;
+  product.thumbnail = thumbnail || product.thumbnail;
 
   await productsDAO.update(product);
 

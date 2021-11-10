@@ -22,8 +22,8 @@ class ProductsMongoDbDAO {
     await this.container.deleteById(id);
   }
 
-  async updateCart(cart) {
-    await this.container.update(cart);
+  async update(product) {
+    await this.container.update(product);
   }
 }
 
