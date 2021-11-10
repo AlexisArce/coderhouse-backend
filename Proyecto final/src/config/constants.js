@@ -1,3 +1,4 @@
-const isAdmin = true;
-
-export default isAdmin;
+export default {
+  isAdmin: true,
+  persistenceMethod: "mongodb",
+};
