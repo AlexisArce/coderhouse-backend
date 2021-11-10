@@ -41,7 +41,6 @@ router.delete("/:id", async (req, res) => {
 
 router.post("/:id/productos", async (req, res) => {
   const cart = await cartsDAO.getById(req.params.id);
-
   if (!cart) res.status(404).json({ error: "carrito no encontrado" });
 
   if (req.body.products && req.body.products.length) {

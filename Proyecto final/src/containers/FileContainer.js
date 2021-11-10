@@ -1,7 +1,7 @@
 import fs from "fs";
 import _ from "lodash";
 
-class Container {
+class FileContainer {
   constructor(filePath) {
     this.filePath = filePath;
   }
@@ -99,4 +99,4 @@ class Container {
   };
 }
 
-export default Container;
+export default FileContainer;
