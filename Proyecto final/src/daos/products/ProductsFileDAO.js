@@ -23,7 +23,7 @@ class ProductsFileDAO {
     await this.container.deleteById(id);
   }
 
-  async updateCart(product) {
+  async update(product) {
     await this.container.updateCart(product);
   }
 }
