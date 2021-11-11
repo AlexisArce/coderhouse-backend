@@ -31,26 +31,7 @@ class FileContainer {
       const all = await this.getAll();
       const index = _.findIndex(all, (p) => p.id == object.id);
 
-      all[index].title = object.title;
-      all[index].price = object.price;
-
-      const info = JSON.stringify(all, null, 2);
-
-      await fs.promises.writeFile(this.filePath, info, "utf-8");
-
-      return object;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  updateCart = async (object) => {
-    try {
-      const all = await this.getAll();
-      const index = _.findIndex(all, (p) => p.id == object.id);
-
-      all[index].products = object.products;
-
+      all[index] = object;
       const info = JSON.stringify(all, null, 2);
 
       await fs.promises.writeFile(this.filePath, info, "utf-8");

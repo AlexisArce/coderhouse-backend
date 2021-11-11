@@ -21,7 +21,7 @@ class CartsFirebaseDAO {
     await this.container.deleteById(id);
   }
 
-  async updateCart(cart) {
+  async update(cart) {
     await this.container.update(cart);
   }
 }

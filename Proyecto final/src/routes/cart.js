@@ -44,7 +44,7 @@ router.post("/:id/productos", async (req, res) => {
 
   if (req.body.products && req.body.products.length) {
     cart.products = [...cart.products, ...req.body.products];
-    await cartsDAO.updateCart(cart);
+    await cartsDAO.update(cart);
 
     res.status(201).json({ msg: "los productos fueron agregados al carrito" });
   } else {

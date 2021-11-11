@@ -24,8 +24,8 @@ class CartsFileDAO {
     await this.container.deleteById(id);
   }
 
-  async updateCart(cart) {
-    await this.container.updateCart(cart);
+  async update(cart) {
+    await this.container.update(cart);
   }
 }
 
