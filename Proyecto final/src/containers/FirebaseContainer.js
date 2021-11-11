@@ -80,8 +80,6 @@ class FirebaseContainer {
       throw new Error(`Error al borrar: ${error}`);
     }
   }
-
-  async desconectar() {}
 }
 
 export default FirebaseContainer;
