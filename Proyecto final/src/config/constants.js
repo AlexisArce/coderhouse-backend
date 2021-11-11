@@ -1,4 +1,4 @@
 export default {
   isAdmin: true,
-  persistenceMethod: "mongodb",
+  persistenceMethod: "firebase", // json, firebase, mongodb
 };

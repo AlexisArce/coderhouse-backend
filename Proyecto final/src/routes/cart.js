@@ -5,7 +5,6 @@ const { Router } = express;
 const router = new Router();
 
 router.get("/", async (req, res) => {
-  console.log(cartsDAO);
   const carts = await cartsDAO.getAll();
   res.json(carts);
 });
